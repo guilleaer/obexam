@@ -68,7 +68,7 @@ public void set_codeType(String _codeType) {
 				String hexStr = Integer.toString(decimal,16);
 				finalString += hexStr;
 			}
-		this.set_normCode(finalString);
+		this.set_normCode(finalString.toUpperCase());
 		return this.get_normCode();
 	  }
 	}

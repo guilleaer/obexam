@@ -1,6 +1,7 @@
 package exam.ImageProcessor;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -66,15 +67,23 @@ public class TextFileImageProcessor implements ImageProcessor {
 			  } else {
 				  color = new RGBColor(currentColor, this.get_colorCode());
 			  }
-			  Integer currentValue = lstToReturn.get(color);
-			  if (currentValue == null) {
-				  currentValue = 1;
-			  } else {
-				  currentValue += 1;
+			  if (!this.findColor(lstToReturn, color)) {
+				  lstToReturn.put(color, 1);  
 			  }
-			  lstToReturn.put(color, currentValue);
 			}
 		}
 		return lstToReturn;
+	}
+	
+	private boolean findColor(Map<Color, Integer> lstToFind, Color color) {
+		 Iterator<Map.Entry<Color, Integer>> it = lstToFind.entrySet().iterator();
+		 while (it.hasNext()) {
+			 Map.Entry<Color, Integer> entry = it.next();
+			 if (entry.getKey().getNormalizedColor().equals(color.getNormalizedColor())) {
+				 entry.setValue(entry.getValue()+1);
+				 return true;
+			 }
+		 }
+		return false;
 	}
 }

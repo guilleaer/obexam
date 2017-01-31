@@ -64,7 +64,7 @@ public void set_codeType(String _codeType) {
 				scale = 10;
 			}
 			finalString = this.transformToRGB(this.get_origColor(), scale);
-		this.set_normCode(finalString);
+		this.set_normCode(finalString.toUpperCase());
 		return this.get_normCode();
 	  }
 	}
